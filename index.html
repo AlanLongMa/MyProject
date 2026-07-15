@@ -97,7 +97,7 @@
     <p>这是一个简单的静态登录演示页面。</p>
     <form id="login-form">
       <label for="username">用户名</label>
-      <input id="username" name="username" type="text" autocomplete="username" placeholder="请输入用户名" pattern="[A-Za-z0-9_\u4e00-\u9fa5-]{2,20}" required>
+      <input id="username" name="username" type="text" autocomplete="username" placeholder="请输入用户名" required>
 
       <label for="password">密码</label>
       <input id="password" name="password" type="password" autocomplete="current-password" placeholder="请输入密码" required>
@@ -115,8 +115,8 @@
       event.preventDefault();
 
       const username = form.username.value.trim();
-      const password = form.password.value.trim();
-      const usernamePattern = /^[A-Za-z0-9_\u4e00-\u9fa5-]{2,20}$/;
+      const password = form.password.value;
+      const usernamePattern = /^[\p{L}\p{N}_-]{2,20}$/u;
 
       if (!username || !password) {
         message.textContent = '请输入用户名和密码。';
@@ -130,6 +130,7 @@
         return;
       }
 
+      // Keep textContent here so username is rendered as plain text instead of HTML.
       message.textContent = `登录成功，欢迎你，${username}！`;
       message.className = 'message success';
       form.reset();
