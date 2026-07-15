@@ -124,8 +124,20 @@
       // Preserve whitespace because spaces may be part of the intended password.
       const password = form.password.value;
 
-      if (!username || password.length === 0 || password.trim().length === 0) {
-        message.textContent = '请输入用户名和密码。';
+      if (!username) {
+        message.textContent = '请输入用户名。';
+        message.className = 'message error';
+        return;
+      }
+
+      if (!password.length) {
+        message.textContent = '请输入密码。';
+        message.className = 'message error';
+        return;
+      }
+
+      if (password.trim().length === 0) {
+        message.textContent = '密码不能全为空格。';
         message.className = 'message error';
         return;
       }
