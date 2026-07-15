@@ -4,9 +4,7 @@
 
 ## 使用方式
 
-直接在浏览器中打开以下文件即可查看页面：
-
-- `/home/runner/work/MyProject/MyProject/index.html`
+直接在浏览器中打开 `index.html` 即可查看页面。
 
 ## 功能
 
