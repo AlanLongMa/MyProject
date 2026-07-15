@@ -115,7 +115,7 @@
   <script>
     const form = document.getElementById('login-form');
     const message = document.getElementById('message');
-    const usernamePattern = /^[A-Za-z0-9_\u4E00-\u9FFF](?:[A-Za-z0-9_\u4E00-\u9FFF-]{0,18}[A-Za-z0-9_\u4E00-\u9FFF])$/u;
+    const usernamePattern = /^[A-Za-z0-9_\u4E00-\u9FFF][A-Za-z0-9_\u4E00-\u9FFF-]{0,18}[A-Za-z0-9_\u4E00-\u9FFF]$/u;
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,128}$/;
 
     form.addEventListener('submit', (event) => {
@@ -127,13 +127,6 @@
 
       if (!username) {
         message.textContent = '请输入用户名。';
-        message.className = 'message error';
-        return;
-      }
-
-      // Allow passwords containing spaces, but reject values that are only whitespace.
-      if (password.trim().length === 0) {
-        message.textContent = '密码不能全为空格。';
         message.className = 'message error';
         return;
       }
