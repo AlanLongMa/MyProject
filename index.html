@@ -130,12 +130,7 @@
         return;
       }
 
-      if (!password.length) {
-        message.textContent = '请输入密码。';
-        message.className = 'message error';
-        return;
-      }
-
+      // Allow passwords containing spaces, but reject values that are only whitespace.
       if (password.trim().length === 0) {
         message.textContent = '密码不能全为空格。';
         message.className = 'message error';
