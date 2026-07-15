@@ -115,6 +115,7 @@
   <script>
     const form = document.getElementById('login-form');
     const message = document.getElementById('message');
+    const usernamePattern = /^[\p{L}\p{N}_-]{2,20}$/u;
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -122,9 +123,8 @@
       const username = form.username.value.trim();
       // Preserve whitespace because spaces may be part of the intended password.
       const password = form.password.value;
-      const usernamePattern = /^[\p{L}\p{N}_-]{2,20}$/u;
 
-      if (!username || !password) {
+      if (!username || password.length === 0 || password.trim().length === 0) {
         message.textContent = '请输入用户名和密码。';
         message.className = 'message error';
         return;
