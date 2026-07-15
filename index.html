@@ -115,7 +115,8 @@
   <script>
     const form = document.getElementById('login-form');
     const message = document.getElementById('message');
-    const usernamePattern = /^[-A-Za-z0-9_\u4E00-\u9FFF]{2,20}$/u;
+    const usernamePattern = /^[A-Za-z0-9_\u4E00-\u9FFF][A-Za-z0-9_\u4E00-\u9FFF-]{1,19}$/u;
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -138,13 +139,19 @@
       }
 
       if (!usernamePattern.test(username)) {
-        message.textContent = '用户名需为 2 到 20 位，可包含中文、字母、数字、下划线或短横线。';
+        message.textContent = '用户名需为 2 到 20 位，可包含中文、字母、数字、下划线或短横线，且不能以短横线开头。';
         message.className = 'message error';
         return;
       }
 
       if (password.length < 8) {
         message.textContent = '密码长度至少需要 8 位。';
+        message.className = 'message error';
+        return;
+      }
+
+      if (!passwordPattern.test(password)) {
+        message.textContent = '密码至少 8 位，且需同时包含字母和数字。';
         message.className = 'message error';
         return;
       }
